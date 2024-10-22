@@ -17,4 +17,6 @@ jobs:
       - name: build image
         run: docker build ./src/ -t shiou278/test-actions:latest
       - name: push image
-        run: docker push shiou278/test-actions:latest
+        run: |
+          docker login -u shiou278 -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+          docker push shiou278/test-actions:latest
