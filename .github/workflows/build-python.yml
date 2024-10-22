@@ -1,20 +1,20 @@
 name: Build
 on:
   workflow_dispatch:
-    inputs:
-      branch:
-        type: string
-        default: develop
-        required: true
-        description: branch name
+    # inputs:
+    #   branch:
+    #     type: string
+    #     default: develop
+    #     required: true
+    #     description: branch name
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.inputs.branch }}
+        # with:
+        #   ref: ${{ github.event.inputs.branch }}
       - name: build image
         run: docker build ./src/ -t shiou278/test-actions:latest
       - name: push image
