@@ -5,3 +5,5 @@ WORKDIR /app
 RUN pip install numpy
 
 COPY ./hello.py .
+
+CMD [ "python", "hello.py" ]
