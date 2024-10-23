@@ -1,0 +1,22 @@
+name: Build
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        type: string
+        default: develop
+        required: true
+        description: branch name
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+      #   - run: echo "hello world"
+      - name: build image
+        run: docker build ./src/ -t shiou278/test-actions:latest
+      - name: push image
+        run: |
+          docker login -u shiou278 -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+          docker push shiou278/test-actions:latest
